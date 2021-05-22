@@ -1,3 +1,8 @@
-title:Welcome!
-theme:jeky-theme-minimal
-markdown:kramdown
+# 標題 1
+## 標題 2
+這是一段文字段落
+> 這裡是一段引用文字
+- 這是清單
++ 這也是清單
+* 這同樣是清單
+    - 清單子項目
