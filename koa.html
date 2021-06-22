@@ -1,14 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>高雄景點api</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
@@ -34,7 +34,6 @@
         height: 380px;
         background-size: cover;
         background-position: center center;
-
     }
 
     .hot-area {
@@ -42,11 +41,12 @@
         position: absolute;
         height: 112px;
         box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
-        background-color: #FFFFFF;
+        background-color: #ffffff;
         text-align: center;
         left: 155px;
         top: 352px;
     }
+
     .hot-area p {
         font-size: 18px;
         text-align: left;
@@ -61,14 +61,15 @@
 
     .content {
         padding-top: 133px;
-        border-top: dashed 1px #559AC8;
+        border-top: dashed 1px #559ac8;
         position: relative;
     }
-    .fa-chevron-circle-down{
+
+    .fa-chevron-circle-down {
         position: absolute;
-        left:550px;
-        top:-5px;
-        color:#559AC8;;
+        left: 550px;
+        top: -5px;
+        color: #559ac8;
     }
 </style>
 
@@ -77,27 +78,26 @@
         <div class="banner text-center">
             <h1 class="text-white p-5">高雄旅遊資訊</h1>
             <div class="btn-group">
-                <button class="btn btn-secondary btn-lg dropdown-toggle text-dark" type="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" style="width:452px; opacity:0.8; background:white">
+                <button class="btn btn-secondary btn-lg dropdown-toggle text-dark changeArea" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    style="width: 452px; opacity: 0.8; background: white">
                     --請選擇行政區--
                 </button>
-                <div class="dropdown-menu" style="width:452px">
-                </div>
+                <div class="dropdown-menu" style="width: 452px"></div>
             </div>
         </div>
         <div class="hot-area">
             <p>熱門行政區</p>
             <div class="area-list">
-                <a href="" class="btn" id="btn2" style="background:#8A82CC">苓雅區</a>
-                <a href="" class="btn" style="background:#FFA782">三民區</a>
-                <a href="" class="btn" style="background:#F5D005">六龜區</a>
-                <a href="" class="btn" style="background:#559AC8">小港區</a>
+                <a href="" class="btn" id="btn2" style="background: #8a82cc">苓雅區</a>
+                <a href="" class="btn" style="background: #ffa782">三民區</a>
+                <a href="" class="btn" style="background: #f5d005">六龜區</a>
+                <a href="" class="btn" style="background: #559ac8">小港區</a>
             </div>
-            
         </div>
         <div class="content">
             <i class="fas fa-chevron-circle-down"></i>
-            <h2 style="color:#8A82CC" class="text-center">三民區</h2>
+            <h2 style="color: #8a82cc" class="text-center">三民區</h2>
             <div class="row content-detail justify-content-center"></div>
         </div>
         <nav aria-label="Page navigation example mt-2">
@@ -127,17 +127,20 @@
         crossorigin="anonymous"></script>
     <script>
         var xhr = new XMLHttpRequest();
-        xhr.open('get', 'https://raw.githubusercontent.com/hexschool/KCGTravel/master/datastore_search.json', true);
+        xhr.open(
+            "get",
+            "https://raw.githubusercontent.com/hexschool/KCGTravel/master/datastore_search.json",
+            true
+        );
         xhr.onload = function () {
             var str = JSON.parse(xhr.responseText);
-            console.log(str);
             var nameAll = [];
             var selectAll = [];
             var len = str.result.records.length;
-            document.querySelectorAll('.area-list a').forEach(function(item) {
+            document.querySelectorAll(".area-list a").forEach(function (item) {
                 item.addEventListener("click", myFunction);
-              });
-            for (i = 0; i < len; i++) {
+            });
+            for (let i = 0; i < len; i++) {
                 nameAll += `
                 <div class="box m-2 ">
                 <div class="row justify-content-between text-white align-items-end" style="background-image:url(${str.result.records[i].Picture1});height:155px;background-size:cover;background-position:center center;">
@@ -152,50 +155,55 @@
                </ul>
                </div>
                </div>
-                `
-                selectAll.push(`<a class="dropdown-item" href="#">${str.result.records[i].Zone}</a>`)
+                `;
+                selectAll.push(
+                    `<a class="dropdown-item" href="#">${str.result.records[i].Zone}</a>`
+                );
             }
-            document.querySelector('.content-detail').innerHTML = nameAll;
-            document.querySelector('.content h2').innerHTML = '全區';
-            var selectlist = document.querySelector('.dropdown-menu');
+            document.querySelector(".content-detail").innerHTML = nameAll;
+            document.querySelector(".content h2").innerHTML = "全區";
+            var selectlist = document.querySelector(".dropdown-menu");
             var result = Array.from(new Set(selectAll));
-            newresult = result.toString().replaceAll(',', '');
+            newresult = result.toString().replaceAll(",", "");
             selectlist.innerHTML = newresult;
-            $(function () {
-                $('.dropdown-menu').on('click', '.dropdown-item', function () {
-                    $(".content-detail").empty();
-                    $(".content h2").empty();
-                    var nameAll2 = []
-                    for (i = 0; i < len; i++) {
-                        if (str.result.records[i].Zone == $(this).text()) {
-                            nameAll2 += `
-                    <div class="box m-2 ">
-                    <div class="row justify-content-between text-white align-items-end" style="background-image:url(${str.result.records[i].Picture1});height:155px;background-size:cover;background-position:center center;">
-                    <h3 class="title col-9">${str.result.records[i].Name}</h3>
-                    <p class="area col">${str.result.records[i].Zone}</p>  
-                    </div>
-                    <div class="detail p-3">
-                    <ul>
-                    <li class="opentime"><i class="fas fa-clock mr-2" style="font-size:13px"></i>${str.result.records[i].Opentime}</li>
-                   <li class="address"><i class="fas fa-map-marker mr-2" ></i>${str.result.records[i].Add}</li>
-                   <li class="tel row justify-content-between"><div><i class="fas fa-mobile-alt mr-2" style="width:13px"></i>${str.result.records[i].Tel}</div><div style="font-size:19px"><i class="fas fa-tag" style="color:#F2FF49"></i>${str.result.records[i].Ticketinfo}</div></li>                   
-                   </ul>
-                   </div>
-                   </div>
+            result.forEach(function (item, index) {
+                selectlist.childNodes[index].addEventListener("click", changeContent, false)
+            });
+            function changeContent() {
+                document.querySelector(".content-detail").innerHTML = "";
+                document.querySelector(".content h2").innerHTML = "";
+                var nameAll2 = []
+                for (let i = 0; i < len; i++) {
+                    if (str.result.records[i].Zone == this.textContent) {
+                        nameAll2 += `
+                  <div class="box m-2 ">
+                  <div class="row justify-content-between text-white align-items-end" style="background-image:url(${str.result.records[i].Picture1});height:155px;background-size:cover;background-position:center center;">
+                  <h3 class="title col-9">${str.result.records[i].Name}</h3>
+                  <p class="area col">${str.result.records[i].Zone}</p>  
+                  </div>
+                  <div class="detail p-3">
+                  <ul>
+                  <li class="opentime"><i class="fas fa-clock mr-2" style="font-size:13px"></i>${str.result.records[i].Opentime}</li>
+                  <li class="address"><i class="fas fa-map-marker mr-2" ></i>${str.result.records[i].Add}</li>
+                  <li class="tel row justify-content-between"><div><i class="fas fa-mobile-alt mr-2" style="width:13px"></i>${str.result.records[i].Tel}</div><div style="font-size:19px"><i class="fas fa-tag" style="color:#F2FF49"></i>${str.result.records[i].Ticketinfo}</div></li>                   
+                  </ul>
+                  </div>
+                  </div>
                     `
-                        }
                     }
-                    $(".content-detail").append(nameAll2)
-                    $(".content h2").append($(this).text());
-                })
-            })
+                }
+                document.querySelector(".content-detail").innerHTML = nameAll2;
+                document.querySelector(".content h2").innerText = this.innerText;
+                document.querySelector(".changeArea").innerText = this.innerText;
+            }
+
             function myFunction(e) {
                 e.preventDefault();
-                document.querySelector('.content h2').innerHTML = this.innerText;
-                document.querySelector('.content-detail').innerHTML ='';
-                var nameAll3=[];
-                for (i=0;i<len;i++){
-                    if (str.result.records[i].Zone==this.innerText){
+                document.querySelector(".content h2").innerHTML = this.innerText;
+                document.querySelector(".content-detail").innerHTML = "";
+                var nameAll3 = [];
+                for (let i = 0; i < len; i++) {
+                    if (str.result.records[i].Zone == this.innerText) {
                         nameAll3 += `
                         <div class="box m-2 ">
                         <div class="row justify-content-between text-white align-items-end" style="background-image:url(${str.result.records[i].Picture1});height:155px;background-size:cover;background-position:center center;">
@@ -210,12 +218,13 @@
                      </ul>
                        </div>
                        </div>
-                        `
+                        `;
                     }
-                    document.querySelector('.content-detail').innerHTML =nameAll3;
+                    document.querySelector(".content-detail").innerHTML = nameAll3;
+                    document.querySelector(".changeArea").innerText = this.innerText;
                 }
             }
-        }
+        };
         xhr.send(null);
     </script>
 </body>
